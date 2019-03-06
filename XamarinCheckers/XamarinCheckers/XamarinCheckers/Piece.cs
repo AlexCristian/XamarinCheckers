@@ -23,7 +23,7 @@ namespace XamarinCheckers
         public Color color;
 
 
-        private Piece(Color color, Location location)
+        public Piece(Color color, Location location)
         {
             this.color = color;
             this.location = location;
@@ -35,9 +35,5 @@ namespace XamarinCheckers
             this.rank = Rank.King;
         }
 
-        public List<Move> getAllowedMoves(Board board)
-        {
-            return null;
-        }
     }
 }
