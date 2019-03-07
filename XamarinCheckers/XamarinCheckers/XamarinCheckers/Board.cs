@@ -52,6 +52,21 @@ namespace XamarinCheckers
             playerOnePieces.Add(new Piece(Color.Black, new Location(7, 7)));
         }
 
+        public Piece findPiece(Color c, Location l)
+        {
+            List<Piece> searchList;
+            if (c == (Color)0)
+                searchList = playerOnePieces;
+            else
+                searchList = playerTwoPieces;
+            foreach (Piece piece in searchList)
+            {
+                if (piece.location == l)
+                    return piece;
+            }
+            return null;
+        }
+
         // locate a piece, or return null if one is not there
         public Piece findPiece(Location loc)
         {
@@ -118,7 +133,9 @@ namespace XamarinCheckers
                 Location jumpedLoc = new Location((piece.location.xCoord + loc.xCoord) / 2, (piece.location.yCoord + loc.yCoord) / 2);
                 // verify that jumped piece is opposite color
                 if (notOffBoard(loc) && findPiece(loc) == null 
+                    && findPiece(jumpedLoc) != null 
                     && findPiece(jumpedLoc).color != piece.color)
+
                 {
                     moveList.Add(checkJumpMove(piece, loc));
                 }
