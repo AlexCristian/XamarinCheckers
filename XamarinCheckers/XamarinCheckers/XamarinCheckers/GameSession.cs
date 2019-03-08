@@ -7,24 +7,24 @@ namespace XamarinCheckers
     class GameSession
     {
         private double timeout;
-        private Color turn;
-        private Board gameBoard;
+        public Color turn;
+        public Board gameBoard;
 
         public GameSession()
         {
             turn = (Color)0;
             gameBoard = new Board();
-            gameBoard.newCheckersGame();
+            gameBoard.NewCheckersGame();
         }
 
         public List<Location> processSelection(Location l)
         {
-            Piece p = gameBoard.findPiece(turn, l);
+            Piece p = gameBoard.FindPiece(turn, l);
             List<Location> highlights = new List<Location>();
             if (p != null)
             {
                 Console.WriteLine("Found Piece");
-                foreach (Move m in gameBoard.findMovesForPiece(p))
+                foreach (Move m in gameBoard.FindMovesForPiece(p))
                     highlights.Add(m.endLoc);
             }
             else
@@ -42,7 +42,7 @@ namespace XamarinCheckers
 
         private void makeMove(Move m)
         {
-            gameBoard.applyMove(m);
+            gameBoard.ApplyMove(m);
         }
 
         private void terminate()

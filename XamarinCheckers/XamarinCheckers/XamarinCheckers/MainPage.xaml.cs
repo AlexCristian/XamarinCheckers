@@ -9,26 +9,85 @@ namespace XamarinCheckers
 {
     public partial class MainPage : ContentPage
     {
-        private GameSession game = new GameSession();
+        private List<Move> moveRecs;
+        private double timeout;
+        private Color turn;
+        private Board gameBoard;
 
         public MainPage()
         {
             InitializeComponent();
-
+            gameBoard = new Board();
+            gameBoard.NewCheckersGame();
+            moveRecs = new List<Move>();
+            turn = (Color)0;
         }
 
-        private void clickedGrid(object sender, EventArgs e)
+        private void ClickedGrid(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             Location square = new Location(Grid.GetColumn(btn), Grid.GetRow(btn));
             Console.WriteLine("Clicked on " + Grid.GetColumn(btn) + ", " + Grid.GetRow(btn));
-            List<Location> highlightCells = game.processSelection(square);
-            foreach (Location l in highlightCells)
+            Piece p = gameBoard.FindPiece(turn, square);
+            if (p != null)
             {
-                Console.WriteLine("Trying to highlight possible move at " + l.xCoord + "," + l.yCoord);
-                boardGrid.Children.Add(new Button { BackgroundColor = Xamarin.Forms.Color.Yellow }, l.xCoord, l.yCoord);
+                Console.WriteLine("Found Piece");
+                foreach (Move move in moveRecs)
+                {
+                    Button empty = new Button { };
+                    empty.Clicked += ClickedGrid;
+                    boardGrid.Children.Add(empty, move.endLoc.xCoord, move.endLoc.yCoord);
+                }
+                moveRecs = gameBoard.FindMovesForPiece(p);
+                foreach (Move m in moveRecs)
+                {
+                    Location l = m.endLoc;
+                    Console.WriteLine("Trying to highlight possible move at " + l.xCoord + "," + l.yCoord);
+                    Button highlight = new Button { BackgroundColor = Xamarin.Forms.Color.Yellow };
+                    highlight.Clicked += ClickedGrid;
+                    boardGrid.Children.Add(highlight, l.xCoord, l.yCoord);
+                }
             }
-            game.swapTurn();
+            else
+            {
+                Console.WriteLine("No piece of your color there");
+                foreach (Move m in moveRecs)
+                {
+                    if (m.endLoc == square && gameBoard.Validate(m))
+                    {
+                        Button empty = new Button {};
+                        empty.Clicked += ClickedGrid;
+                        Button movedChecker = new Button { Text = "C" };
+                        movedChecker.Clicked += ClickedGrid;
+                        boardGrid.Children.Add(empty, m.movingPiece.location.xCoord, m.movingPiece.location.yCoord);
+                        boardGrid.Children.Add(movedChecker, m.endLoc.xCoord, m.endLoc.yCoord);
+                        gameBoard.ApplyMove(m);
+                        if (gameBoard.IsInWinState())
+                        {
+                            Color winner = gameBoard.GetWinner();
+                            boardGrid.Children.Add(new Label { Text = "WINNER" }, 0, 0);
+                        }
+                        else
+                            SwapTurn();
+                    }
+                }
+                foreach (Move move in moveRecs)
+                {
+                    Button empty = new Button { };
+                    empty.Clicked += ClickedGrid;
+                    if (gameBoard.FindPiece(move.endLoc) == null)
+                        boardGrid.Children.Add(empty, move.endLoc.xCoord, move.endLoc.yCoord);
+                }
+                moveRecs.Clear();
+            }
+        }
+
+        private void SwapTurn()
+        {
+            if (turn == (Color)0)
+                turn = (Color)1;
+            else
+                turn = (Color)0;
         }
     }
 }
