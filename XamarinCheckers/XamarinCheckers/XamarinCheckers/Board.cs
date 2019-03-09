@@ -17,7 +17,7 @@ namespace XamarinCheckers
         }
 
         // set up a checkerboard for a new game
-        public void newCheckersGame()
+        public void NewCheckersGame()
         {
             playerTwoPieces = new List<Piece>();
             playerTwoPieces.Add(new Piece(Color.Red, new Location(0, 0)));
@@ -52,7 +52,7 @@ namespace XamarinCheckers
             playerOnePieces.Add(new Piece(Color.Black, new Location(7, 7)));
         }
 
-        public Piece findPiece(Color c, Location l)
+        public Piece FindPiece(Color c, Location l)
         {
             List<Piece> searchList;
             if (c == (Color)0)
@@ -68,7 +68,7 @@ namespace XamarinCheckers
         }
 
         // locate a piece, or return null if one is not there
-        public Piece findPiece(Location loc)
+        public Piece FindPiece(Location loc)
         {
             foreach (Piece piece in playerOnePieces)
             {
@@ -85,7 +85,7 @@ namespace XamarinCheckers
 
         // find all moves for one player
         // calls findMovesForPiece
-        public List<Move> findMoves(Color color)
+        public List<Move> FindMoves(Color color)
         {
             List<Piece> pieceList;
             if ((int)color == 0)
@@ -94,7 +94,7 @@ namespace XamarinCheckers
                 pieceList = playerTwoPieces;
             List<Move> colorMoves = new List<Move>();
             foreach (Piece piece in pieceList)
-                colorMoves.AddRange(findMovesForPiece(piece));
+                colorMoves.AddRange(FindMovesForPiece(piece));
             return colorMoves;
         }
 
@@ -102,17 +102,19 @@ namespace XamarinCheckers
         // Need to determine how to rank moves, because 
         // if a capturing move is available one HAS to take it
         // TODO?
-        public List<Move> findMovesForPiece(Piece piece)
+        public List<Move> FindMovesForPiece(Piece piece)
         {
             List<Move> moveList = new List<Move>();
-            List<Location> destinations = new List<Location> {
-                new Location(piece.location.xCoord + 1, piece.location.yCoord + 1),
-                new Location(piece.location.xCoord - 1, piece.location.yCoord + 1) };
-            List<Location> jumpDestinations = new List<Location> {
-                new Location(piece.location.xCoord + 2, piece.location.yCoord + 2),
-                new Location(piece.location.xCoord - 2, piece.location.yCoord + 2) };
-
-            if (piece.rank == Rank.King)
+            List<Location> destinations = new List<Location>();
+            List<Location> jumpDestinations = new List<Location>();
+            if (piece.rank == Rank.King || piece.color == (Color)1)
+            {
+                destinations.Add(new Location(piece.location.xCoord + 1, piece.location.yCoord + 1));
+                destinations.Add(new Location(piece.location.xCoord - 1, piece.location.yCoord + 1));
+                jumpDestinations.Add(new Location(piece.location.xCoord + 2, piece.location.yCoord + 2));
+                jumpDestinations.Add(new Location(piece.location.xCoord - 2, piece.location.yCoord + 2));
+            }
+            if (piece.rank == Rank.King || piece.color == (Color)0)
             {
                 destinations.Add(new Location(piece.location.xCoord + 1, piece.location.yCoord - 1));
                 destinations.Add(new Location(piece.location.xCoord - 1, piece.location.yCoord - 1));
@@ -122,7 +124,7 @@ namespace XamarinCheckers
 
             foreach (Location loc in destinations)
             {
-                if (notOffBoard(loc) && findPiece(loc) == null)
+                if (NotOffBoard(loc) && FindPiece(loc) == null)
                 {
                     moveList.Add(new Move(piece, loc));
                 }
@@ -132,12 +134,12 @@ namespace XamarinCheckers
             {
                 Location jumpedLoc = new Location((piece.location.xCoord + loc.xCoord) / 2, (piece.location.yCoord + loc.yCoord) / 2);
                 // verify that jumped piece is opposite color
-                if (notOffBoard(loc) && findPiece(loc) == null 
-                    && findPiece(jumpedLoc) != null 
-                    && findPiece(jumpedLoc).color != piece.color)
+                if (NotOffBoard(loc) && FindPiece(loc) == null 
+                    && FindPiece(jumpedLoc) != null 
+                    && FindPiece(jumpedLoc).color != piece.color)
 
                 {
-                    moveList.Add(checkJumpMove(piece, loc));
+                    moveList.Add(CheckJumpMove(piece, piece.location, loc));
                 }
             }
 
@@ -146,22 +148,31 @@ namespace XamarinCheckers
 
         // recursively check if another jump can be made from this location
         // TODO this isn't finished
-        private Move checkJumpMove(Piece piece, Location dest)
+        private Move CheckJumpMove(Piece piece, Location priorDest, Location dest)
         {
-            List<Location> nextJumpDest = new List<Location> {
-                new Location(dest.xCoord + 2, dest.yCoord + 2),
-                new Location(dest.xCoord - 2, dest.yCoord + 2) };
-            if (piece.rank == Rank.King)
+            List<Location> nextJumpDest = new List<Location>();
+            if (piece.rank == Rank.King || piece.color == (Color)1)
+            {
+                nextJumpDest.Add(new Location(dest.xCoord + 2, dest.yCoord + 2));
+                nextJumpDest.Add(new Location(dest.xCoord - 2, dest.yCoord + 2));
+            }
+            if (piece.rank == Rank.King || piece.color == (Color)0)
             {
                 nextJumpDest.Add(new Location(dest.xCoord + 2, dest.yCoord - 2));
                 nextJumpDest.Add(new Location(dest.xCoord - 2, dest.yCoord - 2));
             }
-
+            foreach (Location l in nextJumpDest)
+            {
+                if (l == priorDest)
+                    nextJumpDest.Remove(l);
+            }
+            if (nextJumpDest.Count != 0)
+                CheckJumpMove(piece, dest, nextJumpDest[0]);
             return new Move(piece, dest);
         }
 
         // just a helper method to check if a location is allowed
-        private bool notOffBoard(Location loc)
+        private bool NotOffBoard(Location loc)
         {
             if (loc.xCoord >= 0 && loc.xCoord <= 7 && loc.yCoord >= 0 && loc.yCoord <= 7)
                 return true;
@@ -170,30 +181,30 @@ namespace XamarinCheckers
         }
 
         // is this necessary
-        public List<Move> findCapturingMovesForPiece(Piece piece)
+        public List<Move> FindCapturingMovesForPiece(Piece piece)
         {
             return null;
         }
 
         // validate move???
         // TODO
-        public bool validate(Move move)
+        public bool Validate(Move move)
         {
             return true;
         }
 
         // finalize a move
         // updates piece location and removes captured pieces
-        public void applyMove(Move move)
+        public void ApplyMove(Move move)
         {
             move.movingPiece.location = move.endLoc;
             foreach (Piece p in move.capturedPieces)
-                removePiece(p);
+                RemovePiece(p);
         }
 
         // take a piece out of play
         // TODO: also need to implement captured pieces counter?
-        public void removePiece(Piece piece)
+        public void RemovePiece(Piece piece)
         {
             if (piece.color == (Color)0)
                 playerOnePieces.Remove(piece);
@@ -202,17 +213,17 @@ namespace XamarinCheckers
         }
 
         // check whether the game should be over
-        public bool isInWinState()
+        public bool IsInWinState()
         {
-            if (playerOnePieces.Count == 0 || findMoves((Color)1).Count == 0 || playerTwoPieces.Count == 0 || findMoves((Color)0).Count == 0)
+            if (playerOnePieces.Count == 0 || FindMoves((Color)1).Count == 0 || playerTwoPieces.Count == 0 || FindMoves((Color)0).Count == 0)
                 return true;
             return false;
         }
         
         // declare a winner - should only be called if isInWinState == true
-        public Color getWinner()
+        public Color GetWinner()
         {
-            if (playerOnePieces.Count == 0 || findMoves((Color)1).Count == 0)
+            if (playerOnePieces.Count == 0 || FindMoves((Color)1).Count == 0)
                 return (Color)0;
             else
                 return (Color)1;
