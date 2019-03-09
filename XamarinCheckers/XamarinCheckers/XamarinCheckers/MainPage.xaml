@@ -2,103 +2,107 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamarinCheckers"
-             x:Class="XamarinCheckers.MainPage">
+             x:Class="XamarinCheckers.MainPage"
+             BackgroundColor="Gray">
 
     <StackLayout>
-        <Grid x:Name="boardGrid">
+        <Grid x:Name="boardGrid" HorizontalOptions="Center" Padding="10" RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
             
-            <Button Text="C" TextColor="Red" Grid.Column="0"  Grid.Row="0"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="1"  Grid.Row="0" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="2"  Grid.Row="0"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="3"  Grid.Row="0" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="4"  Grid.Row="0"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="5"  Grid.Row="0" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="6"  Grid.Row="0"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="7"  Grid.Row="0" ></Button>
-            
-            <Button Grid.Column="0"  Grid.Row="1" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="1"  Grid.Row="1"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="2"  Grid.Row="1" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="3"  Grid.Row="1"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="4"  Grid.Row="1" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="5"  Grid.Row="1"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="6"  Grid.Row="1" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="7"  Grid.Row="1"  Clicked="ClickedGrid"></Button>
+            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="0" ></ImageButton>
 
-            <Button Text="C" TextColor="Red" Grid.Column="0"  Grid.Row="2"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="1"  Grid.Row="2" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="2"  Grid.Row="2"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="3"  Grid.Row="2" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="4"  Grid.Row="2"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="5"  Grid.Row="2" ></Button>
-            <Button Text="C" TextColor="Red" Grid.Column="6"  Grid.Row="2"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="7"  Grid.Row="2" ></Button>
-            
-            <Button Grid.Column="0"  Grid.Row="3" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="1"  Grid.Row="3" ></Button>
-            <Button Grid.Column="2"  Grid.Row="3" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="3"  Grid.Row="3" ></Button>
-            <Button Grid.Column="4"  Grid.Row="3" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="5"  Grid.Row="3" ></Button>
-            <Button Grid.Column="6"  Grid.Row="3" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="7"  Grid.Row="3" ></Button>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="1"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="3"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="5"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="7"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
 
-            <Button Grid.Column="0"  Grid.Row="4" ></Button>
-            <Button Grid.Column="1"  Grid.Row="4" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="2"  Grid.Row="4" ></Button>
-            <Button Grid.Column="3"  Grid.Row="4" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="4"  Grid.Row="4" ></Button>
-            <Button Grid.Column="5"  Grid.Row="4" Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="6"  Grid.Row="4" ></Button>
-            <Button Grid.Column="7"  Grid.Row="4" Clicked="ClickedGrid"></Button>
+            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="2" ></ImageButton>
 
-            <Button Grid.Column="0"  Grid.Row="5" ></Button>
-            <Button Text="C" Grid.Column="1"  Grid.Row="5"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="2"  Grid.Row="5" ></Button>
-            <Button Text="C" Grid.Column="3"  Grid.Row="5"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="4"  Grid.Row="5" ></Button>
-            <Button Text="C" Grid.Column="5"  Grid.Row="5"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="6"  Grid.Row="5" ></Button>
-            <Button Text="C" Grid.Column="7"  Grid.Row="5"  Clicked="ClickedGrid"></Button>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="1"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="3"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="5"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="7"  Grid.Row="3" ></ImageButton>
 
-            <Button Text="C" Grid.Column="0"  Grid.Row="6"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="1"  Grid.Row="6" ></Button>
-            <Button Text="C" Grid.Column="2"  Grid.Row="6"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="3"  Grid.Row="6" ></Button>
-            <Button Text="C" Grid.Column="4"  Grid.Row="6"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="5"  Grid.Row="6" ></Button>
-            <Button Text="C" Grid.Column="6"  Grid.Row="6"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="7"  Grid.Row="6" ></Button>
+            <ImageButton Source="blackboard.jpg" Grid.Column="0"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="2"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="4"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="blackboard.jpg" Grid.Column="6"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
 
-            <Button Grid.Column="0"  Grid.Row="7" ></Button>
-            <Button Text="C" Grid.Column="1"  Grid.Row="7"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="2"  Grid.Row="7" ></Button>
-            <Button Text="C" Grid.Column="3"  Grid.Row="7"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="4"  Grid.Row="7" ></Button>
-            <Button Text="C" Grid.Column="5"  Grid.Row="7"  Clicked="ClickedGrid"></Button>
-            <Button Grid.Column="6"  Grid.Row="7" ></Button>
-            <Button Text="C" Grid.Column="7"  Grid.Row="7"  Clicked="ClickedGrid"></Button>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+
+            <ImageButton Source="graychecker.jpg" Grid.Column="0"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="2"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="4"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="6"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="6" ></ImageButton>
+
+            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
         </Grid>
+
+        <Label TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces"   />
+        <Label TextColor="Black" FontSize="50" HorizontalTextAlignment="Center" Text="YOUR TURN"   />
 
     </StackLayout>
 
