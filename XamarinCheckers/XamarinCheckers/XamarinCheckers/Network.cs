@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 namespace XamarinCheckers
 {
@@ -26,7 +27,7 @@ namespace XamarinCheckers
             while (!reachedEnd)
             {
                 int bytesRec = sock.Receive(buffer);
-                string data = Encoding.ASCII.GetString(buffer, 0, bytesRec);
+                string data = Encoding.UTF8.GetString(buffer, 0, bytesRec);
                 message.Append(data);
                 if (data.IndexOf("<EOF>") > -1)
                 {
@@ -38,7 +39,7 @@ namespace XamarinCheckers
 
         public async Task SendMessage(string message)
         {
-            byte[] raw_message = Encoding.ASCII.GetBytes(message);
+            byte[] raw_message = Encoding.UTF8.GetBytes(message);
             sock.Send(raw_message);
         }
 
@@ -54,9 +55,9 @@ namespace XamarinCheckers
         public async Task<Move> ListenForMove()
         {
             string data = await ReceiveMessage();
-            byte[] byteArray = Encoding.ASCII.GetBytes(data);
-            MemoryStream stream = new MemoryStream(byteArray);
-            Move move = (Move) moveSerializer.Deserialize(stream);
+            data = data.Remove(data.LastIndexOf(EndOfFileMarker));
+            XmlReader reader = XmlReader.Create(new StringReader(data));
+            Move move = (Move) moveSerializer.Deserialize(reader);
             return move;
         }
 
@@ -114,7 +115,7 @@ namespace XamarinCheckers
                     }
                     else
                     {
-                        Console.WriteLine("Established connection with remote client : {0}", opponentConn.sock.RemoteEndPoint.ToString());
+                        //Console.WriteLine("Established connection with remote client : {0}", opponentConn.sock.RemoteEndPoint.ToString());
                     }                    
 
                 }
