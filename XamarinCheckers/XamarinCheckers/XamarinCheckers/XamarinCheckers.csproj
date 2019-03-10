@@ -42,6 +42,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="HomeScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="HostPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="JoinPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
