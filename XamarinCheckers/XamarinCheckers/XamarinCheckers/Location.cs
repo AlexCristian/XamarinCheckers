@@ -11,6 +11,10 @@
             this.yCoord = y;
         }
 
+        public Location()
+        {
+        }
+
         public static bool operator == (Location lhs, Location rhs)
         {
             if (lhs.xCoord == rhs.xCoord && lhs.yCoord == rhs.yCoord)

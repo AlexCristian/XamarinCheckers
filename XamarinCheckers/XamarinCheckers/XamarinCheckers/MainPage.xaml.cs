@@ -23,6 +23,16 @@ namespace XamarinCheckers
             moveRecs = new List<Move>();
             highlightPieces = new List<Piece>();
             turn = (Color)0;
+            System.Diagnostics.Debug.WriteLine("My ip is: " + Network.GetDeviceIPAddress());
+            /* Server - Network demo code
+            Connection con = Network.ListenForOpponent().Result;
+            Move move = new Move(new Piece(Color.Red, new Location(3, 5)), new Location(3,6));
+            con.SendMove(move).Wait();*/
+
+            /* Receiver - Network demo code
+            Connection con = Network.ConnectWithOpponent("192.168.86.110").Result;
+            Move move = con.ListenForMove().Result;
+            move.forfeit = false;*/
         }
 
         private void ClickedGrid(object sender, EventArgs e)

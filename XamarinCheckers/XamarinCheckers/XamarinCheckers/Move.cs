@@ -4,12 +4,13 @@ using System.Text;
 
 namespace XamarinCheckers
 {
-    class Move
+    public class Move
     {
         public Piece movingPiece;
         public Location endLoc;
         public List<Piece> capturedPieces;
         public bool undo;
+        public bool forfeit;
 
         public Move(Piece piece, Location end)
         {
@@ -18,12 +19,20 @@ namespace XamarinCheckers
             capturedPieces = new List<Piece>();
         }
 
+        public Move(bool forfeit)
+        {
+            forfeit = true;
+        }
+
+        public Move()
+        {
+        }
+        
         public Move(Piece piece, Location end, List<Piece> capt)
         {
             movingPiece = piece;
             endLoc = end;
             capturedPieces = capt;
         }
-
     }
 }

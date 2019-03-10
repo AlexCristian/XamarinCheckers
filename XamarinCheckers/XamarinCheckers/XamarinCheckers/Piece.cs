@@ -4,19 +4,19 @@ using System.Text;
 
 namespace XamarinCheckers
 {
-    enum Color
+    public enum Color
     {
         Black,
         Red
     }
 
-    enum Rank
+    public enum Rank
     {
         Checker,
         King
     }
 
-    class Piece
+    public class Piece
     {
         public Location location;
         public Rank rank;
@@ -28,6 +28,10 @@ namespace XamarinCheckers
             this.color = color;
             this.location = location;
             this.rank = Rank.Checker;
+        }
+
+        public Piece()
+        {
         }
 
         private void kingPiece()
