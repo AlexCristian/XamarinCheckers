@@ -102,7 +102,7 @@
         </Grid>
 
         <Label TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces"   />
-        <Label TextColor="Black" FontSize="50" HorizontalTextAlignment="Center" Text="YOUR TURN"   />
+        <Label x:Name="turnTracker" TextColor="Black" FontSize="40" HorizontalTextAlignment="Center" Text="Black's Turn"   />
 
     </StackLayout>
 
