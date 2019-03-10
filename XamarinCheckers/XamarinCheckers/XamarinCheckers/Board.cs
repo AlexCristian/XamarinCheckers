@@ -126,7 +126,7 @@ namespace XamarinCheckers
             List<Move> captureMoves = new List<Move>();
             foreach (Move m in colorMoves)
             {
-                if (m.capturedPieces.Count > 0)
+                if (m.capturedPieceLocs.Count > 0)
                     captureMoves.Add(m);
             }
             return captureMoves;
@@ -164,7 +164,7 @@ namespace XamarinCheckers
                     && FindPiece(jumpedLoc).color != piece.color)
 
                 {
-                    Move jumpMove = new Move(piece, loc, new List<Piece> { FindPiece(jumpedLoc) });
+                    Move jumpMove = new Move(piece, loc, new List<Location> { jumpedLoc });
                     moveList.Add(CheckJumpMove(jumpMove, piece.location));
                 }
             }
@@ -188,12 +188,12 @@ namespace XamarinCheckers
         {
             Location dest = move.endLoc;
             List<Location> nextJumpDest = new List<Location>();
-            if (move.movingPiece.rank == Rank.King || move.movingPiece.color == (Color)1)
+            if (move.pieceRank == Rank.King || move.pieceColor == (Color)1)
             {
                 nextJumpDest.Add(new Location(dest.xCoord + 2, dest.yCoord + 2));
                 nextJumpDest.Add(new Location(dest.xCoord - 2, dest.yCoord + 2));
             }
-            if (move.movingPiece.rank == Rank.King || move.movingPiece.color == (Color)0)
+            if (move.pieceRank == Rank.King || move.pieceColor == (Color)0)
             {
                 nextJumpDest.Add(new Location(dest.xCoord + 2, dest.yCoord - 2));
                 nextJumpDest.Add(new Location(dest.xCoord - 2, dest.yCoord - 2));
@@ -211,11 +211,11 @@ namespace XamarinCheckers
                 Location jumpedLoc = new Location((dest.xCoord + loc.xCoord) / 2, (dest.yCoord + loc.yCoord) / 2);
                 if (NotOffBoard(loc) && FindPiece(loc) == null
                     && FindPiece(jumpedLoc) != null
-                    && FindPiece(jumpedLoc).color != move.movingPiece.color)
+                    && FindPiece(jumpedLoc).color != move.pieceColor)
 
                 {
                     Console.WriteLine("Trying to find recursive move");
-                    move.capturedPieces.Add(FindPiece(jumpedLoc));
+                    move.capturedPieceLocs.Add(jumpedLoc);
                     move.endLoc = loc;
                     return CheckJumpMove(move, dest);
                 }
@@ -243,17 +243,19 @@ namespace XamarinCheckers
         // updates piece location and removes captured pieces
         public void ApplyMove(Move move)
         {
-            Piece movedPiece = FindPiece(move.movingPiece.color, move.movingPiece.location);
+            Piece movedPiece = FindPiece(move.pieceColor, move.startLoc);
             movedPiece.location = move.endLoc;
-            foreach (Piece p in move.capturedPieces)
-                RemovePiece(p);
+            foreach (Location l in move.capturedPieceLocs)
+                RemovePiece(l);
+            if (IsKingSpace(movedPiece.location, move.pieceColor))
+                movedPiece.rank = Rank.King;
         }
 
         // take a piece out of play
         // TODO: also need to implement captured pieces counter?
-        public void RemovePiece(Piece piece)
+        public void RemovePiece(Location loc)
         {
-            Piece capturedPiece = FindPiece(piece.color, piece.location);
+            Piece capturedPiece = FindPiece(loc);
             if (capturedPiece.color == (Color)0)
                 playerOnePieces.Remove(capturedPiece);
             else

@@ -28,7 +28,7 @@ namespace XamarinCheckers
     public partial class MainPage : ContentPage
     {
         private List<Move> moveRecs;
-        private List<Piece> highlightPieces;
+        private List<Location> highlightLocs;
         private double timeout;
         private Color turn, localColor;
         private Board gameBoard;
@@ -40,7 +40,7 @@ namespace XamarinCheckers
             gameBoard = new Board();
             gameBoard.NewCheckersGame();
             moveRecs = new List<Move>();
-            highlightPieces = new List<Piece>();
+            highlightLocs = new List<Location>();
             turn = (Color)0;
             System.Diagnostics.Debug.WriteLine("My ip is: " + Network.GetDeviceIPAddress());
             /*
@@ -74,7 +74,7 @@ namespace XamarinCheckers
                     emptyBoard.Clicked += ClickedGrid;
                     boardGrid.Children.Add(emptyBoard, move.endLoc.xCoord, move.endLoc.yCoord);
                 }
-                if (highlightPieces.Count == 0 || highlightPieces.Contains(p))
+                if (highlightLocs.Count == 0 || highlightLocs.Contains(p.location))
                     moveRecs = gameBoard.FindMovesForPiece(p);
                 else
                     moveRecs = new List<Move>();
@@ -132,10 +132,9 @@ namespace XamarinCheckers
             {
                 foreach (Move captMove in captMoves)
                 {
-                    Piece capturer = captMove.movingPiece;
-                    highlightPieces.Add(capturer);
+                    highlightLocs.Add(captMove.startLoc);
                     ImageButton lightChecker;
-                    if (capturer.rank == Rank.King)
+                    if (captMove.pieceRank == Rank.King)
                     {
                         if (turn == (Color)0)
                             lightChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerkinglight.jpg") };
@@ -147,7 +146,7 @@ namespace XamarinCheckers
                     else
                         lightChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerlight.jpg") };
                     lightChecker.Clicked += ClickedGrid;
-                    boardGrid.Children.Add(lightChecker, capturer.location.xCoord, capturer.location.yCoord);
+                    boardGrid.Children.Add(lightChecker, captMove.startLoc.xCoord, captMove.startLoc.yCoord);
                 }
             }
         }
@@ -155,9 +154,8 @@ namespace XamarinCheckers
         private void ApplyMoveToUI(Move m)
         {
             ImageButton movedChecker;
-            if (gameBoard.IsKingSpace(m.endLoc, turn) || m.movingPiece.rank == Rank.King)
+            if (gameBoard.IsKingSpace(m.endLoc, turn) || m.pieceRank == Rank.King)
             {
-                m.movingPiece.rank = Rank.King;
                 if (turn == (Color)0)
                     movedChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerking.jpg") };
                 else
@@ -170,19 +168,19 @@ namespace XamarinCheckers
             movedChecker.Clicked += ClickedGrid;
             ImageButton emptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
             emptyBoard.Clicked += ClickedGrid;
-            boardGrid.Children.Add(emptyBoard, m.movingPiece.location.xCoord, m.movingPiece.location.yCoord);
+            boardGrid.Children.Add(emptyBoard, m.startLoc.xCoord, m.startLoc.yCoord);
             boardGrid.Children.Add(movedChecker, m.endLoc.xCoord, m.endLoc.yCoord);
-            foreach (Piece capt in m.capturedPieces)
+            foreach (Location capt in m.capturedPieceLocs)
             {
                 ImageButton anotherEmptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
                 anotherEmptyBoard.Clicked += ClickedGrid;
-                boardGrid.Children.Add(anotherEmptyBoard, capt.location.xCoord, capt.location.yCoord);
+                boardGrid.Children.Add(anotherEmptyBoard, capt.xCoord, capt.yCoord);
             }
             gameBoard.ApplyMove(m);
-            foreach (Piece light in highlightPieces)
+            foreach (Location light in highlightLocs)
             {
                 ImageButton normChecker;
-                if (light.rank == Rank.King)
+                if (gameBoard.FindPiece(light).rank == Rank.King)
                 {
                     if (turn == (Color)0)
                         normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerking.jpg") };
@@ -194,9 +192,9 @@ namespace XamarinCheckers
                 else
                     normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redchecker.jpg") };
                 normChecker.Clicked += ClickedGrid;
-                boardGrid.Children.Add(normChecker, light.location.xCoord, light.location.yCoord);
+                boardGrid.Children.Add(normChecker, light.xCoord, light.yCoord);
             }
-            highlightPieces.Clear();
+            highlightLocs.Clear();
 
             if (turn == localColor)
             {

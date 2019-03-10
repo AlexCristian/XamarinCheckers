@@ -6,17 +6,16 @@ namespace XamarinCheckers
 {
     public class Move
     {
-        public Piece movingPiece;
+        public Location startLoc;
+        public Rank pieceRank;
+        public Color pieceColor;
         public Location endLoc;
-        public List<Piece> capturedPieces;
+        public List<Location> capturedPieceLocs;
         public bool undo;
         public bool forfeit;
 
-        public Move(Piece piece, Location end)
+        public Move()
         {
-            movingPiece = piece;
-            endLoc = end;
-            capturedPieces = new List<Piece>();
         }
 
         public Move(bool forfeit)
@@ -24,15 +23,22 @@ namespace XamarinCheckers
             forfeit = true;
         }
 
-        public Move()
+        public Move(Piece piece, Location end)
         {
+            startLoc = piece.location;
+            pieceColor = piece.color;
+            pieceRank = piece.rank;
+            endLoc = end;
+            capturedPieceLocs = new List<Location>();
         }
         
-        public Move(Piece piece, Location end, List<Piece> capt)
+        public Move(Piece piece, Location end, List<Location> capt)
         {
-            movingPiece = piece;
+            startLoc = piece.location;
+            pieceColor = piece.color;
+            pieceRank = piece.rank;
             endLoc = end;
-            capturedPieces = capt;
+            capturedPieceLocs = capt;
         }
     }
 }
