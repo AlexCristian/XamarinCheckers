@@ -28,77 +28,77 @@
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             
-            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="0" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="0" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="0" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="0"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="1"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="2"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="3"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="4"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="5"  Grid.Row="0" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="6"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="7"  Grid.Row="0" ></ImageButton>
 
-            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="1"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="3"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="5"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="7"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="0"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="1"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="2"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="3"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="4"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="5"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="6"  Grid.Row="1" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="7"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
 
-            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="2" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="2" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="2" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="0"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="1"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="2"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="3"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="4"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="5"  Grid.Row="2" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="6"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="7"  Grid.Row="2" ></ImageButton>
 
-            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="1"  Grid.Row="3" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="3"  Grid.Row="3" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="5"  Grid.Row="3" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="7"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="0"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="1"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="2"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="3"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="4"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="5"  Grid.Row="3" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="6"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="7"  Grid.Row="3" ></ImageButton>
 
-            <ImageButton Source="blackboard.jpg" Grid.Column="0"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="2"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="4"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="blackboard.jpg" Grid.Column="6"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="0"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="1"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="2"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="3"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="4"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="5"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.blackboard.jpg}" Grid.Column="6"  Grid.Row="4" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="7"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
 
-            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="0"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="1"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="2"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="3"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="4"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="5"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="6"  Grid.Row="5" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="7"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
 
-            <ImageButton Source="graychecker.jpg" Grid.Column="0"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="6" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="2"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="6" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="4"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="6" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="6"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="0"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="1"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="2"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="3"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="4"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="5"  Grid.Row="6" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="6"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="7"  Grid.Row="6" ></ImageButton>
 
-            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="0"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="1"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="2"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="3"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="4"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="5"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="6"  Grid.Row="7" ></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="7"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
         </Grid>
 
         <Label TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces"   />
