@@ -4,16 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace XamarinCheckers
 {
+
+    [ContentProperty("Source")]
+    public class ImageResourceExtension : IMarkupExtension
+    {
+        public string Source { get; set; }
+
+        public object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (Source == null)
+                return null;
+            
+            var imageSource = ImageSource.FromResource(Source);
+
+            return imageSource;
+        }
+    }
+
     public partial class MainPage : ContentPage
     {
         private List<Move> moveRecs;
-        private List<Piece> highlightPieces;
+        private List<Location> highlightLocs;
         private double timeout;
-        private Color turn;
+        private Color turn, localColor;
         private Board gameBoard;
+        private Connection opponent;
 
         public MainPage()
         {
@@ -21,42 +40,67 @@ namespace XamarinCheckers
             gameBoard = new Board();
             gameBoard.NewCheckersGame();
             moveRecs = new List<Move>();
-            highlightPieces = new List<Piece>();
+            highlightLocs = new List<Location>();
             turn = (Color)0;
             System.Diagnostics.Debug.WriteLine("My ip is: " + Network.GetDeviceIPAddress());
-            /* Server - Network demo code
-            Connection con = Network.ListenForOpponent().Result;
-            Move move = new Move(new Piece(Color.Red, new Location(3, 5)), new Location(3,6));
-            con.SendMove(move).Wait();*/
-
-            /* Receiver - Network demo code
-            Connection con = Network.ConnectWithOpponent("192.168.86.110").Result;
-            Move move = con.ListenForMove().Result;
-            move.forfeit = false;*/
         }
 
-        private void ClickedGrid(object sender, EventArgs e)
+        protected override async void OnAppearing()
+        {/*
+            turnTracker.Text = "Awaiting opponent";
+            localColor = (Color)0;
+            await WaitForOpponent();
+            */
+            /* Receiver - Network demo code*/
+            
+            turnTracker.Text = "Connecting";
+            localColor = (Color)1;
+            await ConnectToOpponent("6.98.143.25");
+        }
+
+        private async Task WaitForOpponent()
+        {
+            Task<Connection> result = Task.Run(() => Network.ListenForOpponent());
+            opponent = await result;
+            turnTracker.Text = "Black's Turn";
+        }
+
+        private async Task ConnectToOpponent(string ip)
+        {
+            Task<Connection> result = Task.Run(() => Network.ConnectWithOpponent(ip));
+            opponent = await result;
+            turnTracker.Text = "Black's Turn";
+            await ListenForRemoteMove();
+        }
+
+        private async void ClickedGrid(object sender, EventArgs e)
         {
             ImageButton btn = sender as ImageButton;
             Location square = new Location(Grid.GetColumn(btn), Grid.GetRow(btn));
             Console.WriteLine("Clicked on " + Grid.GetColumn(btn) + ", " + Grid.GetRow(btn));
             Piece p = gameBoard.FindPiece(turn, square);
+
+            if (turn != localColor)
+            {
+                return;
+            }
+
             if (p != null)
             {
                 Console.WriteLine("Found Piece");
                 foreach (Move move in moveRecs)
                 {
-                    ImageButton emptyBoard = new ImageButton { Source = "blackboard.jpg" };
+                    ImageButton emptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
                     emptyBoard.Clicked += ClickedGrid;
                     boardGrid.Children.Add(emptyBoard, move.endLoc.xCoord, move.endLoc.yCoord);
                 }
-                if (highlightPieces.Count == 0 || highlightPieces.Contains(p))
+                if (highlightLocs.Count == 0 || highlightLocs.Contains(p.location))
                     moveRecs = gameBoard.FindMovesForPiece(p);
                 else
                     moveRecs = new List<Move>();
                 foreach (Move m in moveRecs)
                 {
-                    ImageButton highlight = new ImageButton { Source = "highlightboard.jpg" };
+                    ImageButton highlight = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.highlightboard.jpg") };
                     highlight.Clicked += ClickedGrid;
                     Location l = m.endLoc;
                     Console.WriteLine("Trying to highlight possible move at " + l.xCoord + "," + l.yCoord); 
@@ -70,110 +114,148 @@ namespace XamarinCheckers
                 {
                     if (m.endLoc == square && gameBoard.Validate(m))
                     {
-                        ImageButton movedChecker;
-                        if (gameBoard.IsKingSpace(m.endLoc, turn) || m.movingPiece.rank == Rank.King)
+                        ApplyMoveToUI(m);
+
+                        turnTracker.Text = "Sending move...";
+                        await opponent.SendMove(m);
+
+                        SwapTurn();
+                        if (!gameBoard.IsInWinState())
                         {
-                            m.movingPiece.rank = Rank.King;
-                            if (turn == (Color)0)
-                                movedChecker = new ImageButton { Source = "graycheckerking.jpg" };
-                            else
-                                movedChecker = new ImageButton { Source = "redcheckerking.jpg" };
+                            await ListenForRemoteMove();
                         }
-                        else if (turn == (Color)0)
-                            movedChecker = new ImageButton { Source = "graychecker.jpg" };
-                        else
-                            movedChecker = new ImageButton { Source = "redchecker.jpg" };
-                        movedChecker.Clicked += ClickedGrid;
-                        ImageButton emptyBoard = new ImageButton { Source = "blackboard.jpg" };
-                        emptyBoard.Clicked += ClickedGrid;
-                        boardGrid.Children.Add(emptyBoard, m.movingPiece.location.xCoord, m.movingPiece.location.yCoord);
-                        boardGrid.Children.Add(movedChecker, m.endLoc.xCoord, m.endLoc.yCoord);
-                        foreach (Piece capt in m.capturedPieces)
-                        {
-                            ImageButton anotherEmptyBoard = new ImageButton { Source = "blackboard.jpg" };
-                            boardGrid.Children.Add(anotherEmptyBoard, capt.location.xCoord, capt.location.yCoord);
-                        }
-                        gameBoard.ApplyMove(m);
-                        foreach (Piece light in highlightPieces)
-                        {
-                            ImageButton normChecker;
-                            if (light.rank == Rank.King)
-                            {
-                                if (turn == (Color)0)
-                                    normChecker = new ImageButton { Source = "graycheckerking.jpg" };
-                                else
-                                    normChecker = new ImageButton { Source = "redcheckerking.jpg" };
-                            }
-                            else if (turn == (Color)0)
-                                normChecker = new ImageButton { Source = "graychecker.jpg" };
-                            else
-                                normChecker = new ImageButton { Source = "redchecker.jpg" };
-                            normChecker.Clicked += ClickedGrid;
-                            boardGrid.Children.Add(normChecker, light.location.xCoord, light.location.yCoord);
-                        }
-                        highlightPieces.Clear();
-                        if (gameBoard.IsInWinState())
-                        {
-                            Color winner = gameBoard.GetWinner();
-                            if (winner == (Color)0)
-                                turnTracker.Text = "WINNER! BLACK";
-                            else
-                                turnTracker.Text = "WINNER! RED";
-                        }
-                        else
-                        {
-                            SwapTurn();
-                            List<Move> captMoves = gameBoard.FindCapturingMoves(turn);
-                            if (captMoves.Count > 0)
-                            {
-                                foreach (Move captMove in captMoves)
-                                {
-                                    Piece capturer = captMove.movingPiece;
-                                    highlightPieces.Add(capturer);
-                                    ImageButton lightChecker;
-                                    if (capturer.rank == Rank.King)
-                                    {
-                                        if (turn == (Color)0)
-                                            lightChecker = new ImageButton { Source = "graycheckerkinglight.jpg" };
-                                        else
-                                            lightChecker = new ImageButton { Source = "redcheckerkinglight.jpg" };
-                                    }
-                                    else if (turn == (Color)0)
-                                        lightChecker = new ImageButton { Source = "graycheckerlight.jpg" };
-                                    else
-                                        lightChecker = new ImageButton { Source = "redcheckerlight.jpg" };
-                                    lightChecker.Clicked += ClickedGrid;
-                                    boardGrid.Children.Add(lightChecker, capturer.location.xCoord, capturer.location.yCoord);
-                                }
-                            }
-                        }
-                        moveRecs.Remove(m);
+
                         break;
                     }
                 }
-                foreach (Move move in moveRecs)
-                {
-                    ImageButton emptyBoard = new ImageButton { Source = "blackboard.jpg" };
-                    emptyBoard.Clicked += ClickedGrid;
-                    if (gameBoard.FindPiece(move.endLoc) == null)
-                        boardGrid.Children.Add(emptyBoard, move.endLoc.xCoord, move.endLoc.yCoord);
-                }
-                moveRecs.Clear();
             }
+        }
+
+        private async Task ListenForRemoteMove()
+        {
+            Task<Move> result = Task.Run(() => opponent.ListenForMove());
+            Move mv = await result;
+            ApplyMoveToUI(mv);
+            SwapTurn();
+            if (turn == localColor)
+            {
+                ForceCapturingMovesOnUI();
+            }
+        }
+
+        private void ForceCapturingMovesOnUI()
+        {
+            List<Move> captMoves = gameBoard.FindCapturingMoves(turn);
+            if (captMoves.Count > 0)
+            {
+                foreach (Move captMove in captMoves)
+                {
+                    highlightLocs.Add(captMove.startLoc);
+                    ImageButton lightChecker;
+                    if (captMove.pieceRank == Rank.King)
+                    {
+                        if (turn == (Color)0)
+                            lightChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerkinglight.jpg") };
+                        else
+                            lightChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerkinglight.jpg") };
+                    }
+                    else if (turn == (Color)0)
+                        lightChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerlight.jpg") };
+                    else
+                        lightChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerlight.jpg") };
+                    lightChecker.Clicked += ClickedGrid;
+                    boardGrid.Children.Add(lightChecker, captMove.startLoc.xCoord, captMove.startLoc.yCoord);
+                }
+            }
+        }
+
+        private void ApplyMoveToUI(Move m)
+        {
+            foreach (Location light in highlightLocs)
+            {
+                ImageButton normChecker;
+                if (gameBoard.FindPiece(light).rank == Rank.King)
+                {
+                    if (turn == (Color)0)
+                        normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerking.jpg") };
+                    else
+                        normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerking.jpg") };
+                }
+                else if (turn == (Color)0)
+                    normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graychecker.jpg") };
+                else
+                    normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redchecker.jpg") };
+                normChecker.Clicked += ClickedGrid;
+                boardGrid.Children.Add(normChecker, light.xCoord, light.yCoord);
+            }
+            highlightLocs.Clear();
+
+            ImageButton movedChecker;
+            if (gameBoard.IsKingSpace(m.endLoc, turn) || m.pieceRank == Rank.King)
+            {
+                if (turn == (Color)0)
+                    movedChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerking.jpg") };
+                else
+                    movedChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerking.jpg") };
+            }
+            else if (turn == (Color)0)
+                movedChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graychecker.jpg") };
+            else
+                movedChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redchecker.jpg") };
+            movedChecker.Clicked += ClickedGrid;
+            ImageButton emptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
+            emptyBoard.Clicked += ClickedGrid;
+            boardGrid.Children.Add(emptyBoard, m.startLoc.xCoord, m.startLoc.yCoord);
+            boardGrid.Children.Add(movedChecker, m.endLoc.xCoord, m.endLoc.yCoord);
+            foreach (Location capt in m.capturedPieceLocs)
+            {
+                ImageButton anotherEmptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
+                anotherEmptyBoard.Clicked += ClickedGrid;
+                boardGrid.Children.Add(anotherEmptyBoard, capt.xCoord, capt.yCoord);
+            }
+            gameBoard.ApplyMove(m);
+
+            if (turn == localColor)
+            {
+                moveRecs.Remove(m);
+            }
+
+            foreach (Move move in moveRecs)
+            {
+                emptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
+                emptyBoard.Clicked += ClickedGrid;
+                if (gameBoard.FindPiece(move.endLoc) == null)
+                    boardGrid.Children.Add(emptyBoard, move.endLoc.xCoord, move.endLoc.yCoord);
+            }
+            moveRecs.Clear();
         }
 
         private void SwapTurn()
         {
-            if (turn == (Color)0)
+            if (gameBoard.IsInWinState())
             {
-                turnTracker.Text = "Red's Turn";
+                Color winner = gameBoard.GetWinner();
+                if (winner == (Color)0)
+                    turnTracker.Text = "WINNER! BLACK";
+                else
+                    turnTracker.Text = "WINNER! RED";
+            }
+            else if (turn == (Color)0)
+            {
                 turn = (Color)1;
+                turnTracker.Text = "Red's Turn";
             }
             else
             {
                 turn = (Color)0;
                 turnTracker.Text = "Black's Turn";
             }
+        }
+
+        private async void WaitAndApplyRemoteMove()
+        {
+            Move m = await opponent.ListenForMove();
+            gameBoard.ApplyMove(m);
         }
     }
 }
