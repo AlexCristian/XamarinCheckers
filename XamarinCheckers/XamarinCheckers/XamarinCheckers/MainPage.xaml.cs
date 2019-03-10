@@ -25,6 +25,10 @@ namespace XamarinCheckers
             turn = (Color)0;
             redChecker.Clicked += ClickedGrid;
             blackChecker.Clicked += ClickedGrid;
+            System.Diagnostics.Debug.WriteLine("My ip is: " + Network.GetDeviceIPAddress());
+            Connection con = Network.ListenForOpponent().Result;
+            Move move = new Move(new Piece(Color.Red, new Location(3, 5)), new Location(3,6));
+            con.SendMove(move).Wait();
         }
 
         private void ClickedGrid(object sender, EventArgs e)

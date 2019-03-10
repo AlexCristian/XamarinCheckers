@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XamarinCheckers
 {
-    class Move
+    public class Move
     {
         public Piece movingPiece;
         public Location endLoc;
