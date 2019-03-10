@@ -101,7 +101,6 @@ namespace XamarinCheckers
         // returns a list of possible moves for a given piece
         // Need to determine how to rank moves, because 
         // if a capturing move is available one HAS to take it
-        // TODO?
         public List<Move> FindMovesForPiece(Piece piece)
         {
             List<Move> moveList = new List<Move>();
@@ -122,14 +121,6 @@ namespace XamarinCheckers
                 jumpDestinations.Add(new Location(piece.location.xCoord - 2, piece.location.yCoord - 2));
             }
 
-            foreach (Location loc in destinations)
-            {
-                if (NotOffBoard(loc) && FindPiece(loc) == null)
-                {
-                    moveList.Add(new Move(piece, loc));
-                }
-            }
-
             foreach (Location loc in jumpDestinations)
             {
                 Location jumpedLoc = new Location((piece.location.xCoord + loc.xCoord) / 2, (piece.location.yCoord + loc.yCoord) / 2);
@@ -142,12 +133,22 @@ namespace XamarinCheckers
                     moveList.Add(CheckJumpMove(piece, piece.location, loc));
                 }
             }
-
-            return moveList;
+            if (moveList.Count != 0)
+                return moveList;
+            else
+            {
+                foreach (Location loc in destinations)
+                {
+                    if (NotOffBoard(loc) && FindPiece(loc) == null)
+                    {
+                        moveList.Add(new Move(piece, loc));
+                    }
+                }
+                return moveList;
+            }
         }
 
         // recursively check if another jump can be made from this location
-        // TODO this isn't finished
         private Move CheckJumpMove(Piece piece, Location priorDest, Location dest)
         {
             List<Location> nextJumpDest = new List<Location>();
@@ -164,10 +165,22 @@ namespace XamarinCheckers
             foreach (Location l in nextJumpDest)
             {
                 if (l == priorDest)
+                {
                     nextJumpDest.Remove(l);
+                    break;
+                }
             }
-            if (nextJumpDest.Count != 0)
-                CheckJumpMove(piece, dest, nextJumpDest[0]);
+            foreach (Location loc in nextJumpDest)
+            {
+                Location jumpedLoc = new Location((priorDest.xCoord + loc.xCoord) / 2, (priorDest.yCoord + loc.yCoord) / 2);
+                if (NotOffBoard(loc) && FindPiece(loc) == null
+                    && FindPiece(jumpedLoc) != null
+                    && FindPiece(jumpedLoc).color != piece.color)
+
+                {
+                    moveList.Add(CheckJumpMove(piece, piece.location, loc));
+                }
+            }
             return new Move(piece, dest);
         }
 

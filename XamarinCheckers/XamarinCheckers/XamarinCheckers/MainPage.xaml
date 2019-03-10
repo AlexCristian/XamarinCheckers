@@ -8,97 +8,97 @@
     <StackLayout>
         <Grid x:Name="boardGrid" HorizontalOptions="Center" Padding="10" RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             
-            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="0" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="0" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="0" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="0"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="0" ></ImageButton>
 
             <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="1"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="1"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="3"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="3"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="5"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="5"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="1" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="7"  Grid.Row="1"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="7"  Grid.Row="1"  Clicked="ClickedGrid"></ImageButton>
 
-            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="0"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="2" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="2"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="2" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="4"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="2" ></ImageButton>
-            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="2"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="redchecker.jpg" Grid.Column="6"  Grid.Row="2"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="2" ></ImageButton>
 
-            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="1"  Grid.Row="3" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="3"  Grid.Row="3" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="5"  Grid.Row="3" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="3" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="3" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="7"  Grid.Row="3" ></ImageButton>
 
             <ImageButton Source="blackboard.jpg" Grid.Column="0"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="2"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="4"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="blackboard.jpg" Grid.Column="6"  Grid.Row="4" ></ImageButton>
-            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="4" Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="4" Clicked="ClickedGrid"></ImageButton>
 
             <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="5" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="5"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="5"  Clicked="ClickedGrid"></ImageButton>
 
-            <ImageButton Source="graychecker.jpg" Grid.Column="0"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="0"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="1"  Grid.Row="6" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="2"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="2"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="3"  Grid.Row="6" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="4"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="4"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="5"  Grid.Row="6" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="6"  Grid.Row="6"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="6"  Grid.Row="6"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="7"  Grid.Row="6" ></ImageButton>
 
             <ImageButton Source="whiteboard.jpg" Grid.Column="0"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="1"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="2"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="3"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="4"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="5"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="whiteboard.jpg" Grid.Column="6"  Grid.Row="7" ></ImageButton>
-            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="7"  Clicked="clickedGrid"></ImageButton>
+            <ImageButton Source="graychecker.jpg" Grid.Column="7"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
         </Grid>
 
         <Label TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces"   />

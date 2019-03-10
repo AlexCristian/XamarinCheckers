@@ -13,6 +13,8 @@ namespace XamarinCheckers
         private double timeout;
         private Color turn;
         private Board gameBoard;
+        private ImageButton redChecker = new ImageButton { Source = "redchecker.jpg" };
+        private ImageButton blackChecker = new ImageButton { Source = "graychecker.jpg" };
 
         public MainPage()
         {
@@ -21,11 +23,13 @@ namespace XamarinCheckers
             gameBoard.NewCheckersGame();
             moveRecs = new List<Move>();
             turn = (Color)0;
+            redChecker.Clicked += ClickedGrid;
+            blackChecker.Clicked += ClickedGrid;
         }
 
         private void ClickedGrid(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            ImageButton btn = sender as ImageButton;
             Location square = new Location(Grid.GetColumn(btn), Grid.GetRow(btn));
             Console.WriteLine("Clicked on " + Grid.GetColumn(btn) + ", " + Grid.GetRow(btn));
             Piece p = gameBoard.FindPiece(turn, square);
@@ -34,17 +38,17 @@ namespace XamarinCheckers
                 Console.WriteLine("Found Piece");
                 foreach (Move move in moveRecs)
                 {
-                    Button empty = new Button { };
-                    empty.Clicked += ClickedGrid;
-                    boardGrid.Children.Add(empty, move.endLoc.xCoord, move.endLoc.yCoord);
+                    ImageButton emptyBoard = new ImageButton { Source = "blackboard.jpg" };
+                    emptyBoard.Clicked += ClickedGrid;
+                    boardGrid.Children.Add(emptyBoard, move.endLoc.xCoord, move.endLoc.yCoord);
                 }
                 moveRecs = gameBoard.FindMovesForPiece(p);
                 foreach (Move m in moveRecs)
                 {
-                    Location l = m.endLoc;
-                    Console.WriteLine("Trying to highlight possible move at " + l.xCoord + "," + l.yCoord);
-                    Button highlight = new Button { BackgroundColor = Xamarin.Forms.Color.Yellow };
+                    ImageButton highlight = new ImageButton { Source = "highlightboard.jpg" };
                     highlight.Clicked += ClickedGrid;
+                    Location l = m.endLoc;
+                    Console.WriteLine("Trying to highlight possible move at " + l.xCoord + "," + l.yCoord); 
                     boardGrid.Children.Add(highlight, l.xCoord, l.yCoord);
                 }
             }
@@ -55,11 +59,14 @@ namespace XamarinCheckers
                 {
                     if (m.endLoc == square && gameBoard.Validate(m))
                     {
-                        Button empty = new Button {};
-                        empty.Clicked += ClickedGrid;
-                        Button movedChecker = new Button { Text = "C" };
-                        movedChecker.Clicked += ClickedGrid;
-                        boardGrid.Children.Add(empty, m.movingPiece.location.xCoord, m.movingPiece.location.yCoord);
+                        ImageButton movedChecker;
+                        if (turn == (Color)0)
+                            movedChecker = blackChecker;
+                        else
+                            movedChecker = redChecker;
+                        ImageButton emptyBoard = new ImageButton { Source = "blackboard.jpg" };
+                        emptyBoard.Clicked += ClickedGrid;
+                        boardGrid.Children.Add(emptyBoard, m.movingPiece.location.xCoord, m.movingPiece.location.yCoord);
                         boardGrid.Children.Add(movedChecker, m.endLoc.xCoord, m.endLoc.yCoord);
                         gameBoard.ApplyMove(m);
                         if (gameBoard.IsInWinState())
@@ -73,10 +80,10 @@ namespace XamarinCheckers
                 }
                 foreach (Move move in moveRecs)
                 {
-                    Button empty = new Button { };
-                    empty.Clicked += ClickedGrid;
+                    ImageButton emptyBoard = new ImageButton { Source = "blackboard.jpg" };
+                    emptyBoard.Clicked += ClickedGrid;
                     if (gameBoard.FindPiece(move.endLoc) == null)
-                        boardGrid.Children.Add(empty, move.endLoc.xCoord, move.endLoc.yCoord);
+                        boardGrid.Children.Add(emptyBoard, move.endLoc.xCoord, move.endLoc.yCoord);
                 }
                 moveRecs.Clear();
             }
