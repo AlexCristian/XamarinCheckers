@@ -43,14 +43,34 @@ namespace XamarinCheckers
             highlightLocs = new List<Location>();
             turn = (Color)0;
             System.Diagnostics.Debug.WriteLine("My ip is: " + Network.GetDeviceIPAddress());
-            /*
-            opponent = Network.ListenForOpponent().Result;
-            localColor = (Color)0;*/
+        }
 
+        protected override async void OnAppearing()
+        {/*
+            turnTracker.Text = "Awaiting opponent";
+            localColor = (Color)0;
+            await WaitForOpponent();
+            */
             /* Receiver - Network demo code*/
-            opponent = Network.ConnectWithOpponent("10.218.22.72").Result;
+            
+            turnTracker.Text = "Connecting";
             localColor = (Color)1;
-            ListenForRemoteMove();
+            await ConnectToOpponent("6.98.143.25");
+        }
+
+        private async Task WaitForOpponent()
+        {
+            Task<Connection> result = Task.Run(() => Network.ListenForOpponent());
+            opponent = await result;
+            turnTracker.Text = "Black's Turn";
+        }
+
+        private async Task ConnectToOpponent(string ip)
+        {
+            Task<Connection> result = Task.Run(() => Network.ConnectWithOpponent(ip));
+            opponent = await result;
+            turnTracker.Text = "Black's Turn";
+            await ListenForRemoteMove();
         }
 
         private async void ClickedGrid(object sender, EventArgs e)
@@ -102,14 +122,7 @@ namespace XamarinCheckers
                         SwapTurn();
                         if (!gameBoard.IsInWinState())
                         {
-                            if (turn == localColor)
-                            {
-                                ForceCapturingMovesOnUI();
-                            }
-                            else
-                            {
-                                await ListenForRemoteMove();
-                            }
+                            await ListenForRemoteMove();
                         }
 
                         break;
@@ -120,9 +133,14 @@ namespace XamarinCheckers
 
         private async Task ListenForRemoteMove()
         {
-            Move mv = await opponent.ListenForMove();
+            Task<Move> result = Task.Run(() => opponent.ListenForMove());
+            Move mv = await result;
             ApplyMoveToUI(mv);
             SwapTurn();
+            if (turn == localColor)
+            {
+                ForceCapturingMovesOnUI();
+            }
         }
 
         private void ForceCapturingMovesOnUI()
@@ -153,6 +171,25 @@ namespace XamarinCheckers
 
         private void ApplyMoveToUI(Move m)
         {
+            foreach (Location light in highlightLocs)
+            {
+                ImageButton normChecker;
+                if (gameBoard.FindPiece(light).rank == Rank.King)
+                {
+                    if (turn == (Color)0)
+                        normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerking.jpg") };
+                    else
+                        normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerking.jpg") };
+                }
+                else if (turn == (Color)0)
+                    normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graychecker.jpg") };
+                else
+                    normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redchecker.jpg") };
+                normChecker.Clicked += ClickedGrid;
+                boardGrid.Children.Add(normChecker, light.xCoord, light.yCoord);
+            }
+            highlightLocs.Clear();
+
             ImageButton movedChecker;
             if (gameBoard.IsKingSpace(m.endLoc, turn) || m.pieceRank == Rank.King)
             {
@@ -177,24 +214,6 @@ namespace XamarinCheckers
                 boardGrid.Children.Add(anotherEmptyBoard, capt.xCoord, capt.yCoord);
             }
             gameBoard.ApplyMove(m);
-            foreach (Location light in highlightLocs)
-            {
-                ImageButton normChecker;
-                if (gameBoard.FindPiece(light).rank == Rank.King)
-                {
-                    if (turn == (Color)0)
-                        normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graycheckerking.jpg") };
-                    else
-                        normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redcheckerking.jpg") };
-                }
-                else if (turn == (Color)0)
-                    normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.graychecker.jpg") };
-                else
-                    normChecker = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.redchecker.jpg") };
-                normChecker.Clicked += ClickedGrid;
-                boardGrid.Children.Add(normChecker, light.xCoord, light.yCoord);
-            }
-            highlightLocs.Clear();
 
             if (turn == localColor)
             {
