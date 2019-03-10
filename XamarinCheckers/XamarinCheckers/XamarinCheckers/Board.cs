@@ -243,7 +243,8 @@ namespace XamarinCheckers
         // updates piece location and removes captured pieces
         public void ApplyMove(Move move)
         {
-            move.movingPiece.location = move.endLoc;
+            Piece movedPiece = FindPiece(move.movingPiece.color, move.movingPiece.location);
+            movedPiece.location = move.endLoc;
             foreach (Piece p in move.capturedPieces)
                 RemovePiece(p);
         }
@@ -252,10 +253,11 @@ namespace XamarinCheckers
         // TODO: also need to implement captured pieces counter?
         public void RemovePiece(Piece piece)
         {
-            if (piece.color == (Color)0)
-                playerOnePieces.Remove(piece);
+            Piece capturedPiece = FindPiece(piece.color, piece.location);
+            if (capturedPiece.color == (Color)0)
+                playerOnePieces.Remove(capturedPiece);
             else
-                playerTwoPieces.Remove(piece);
+                playerTwoPieces.Remove(capturedPiece);
         }
 
         // check whether the game should be over

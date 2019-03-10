@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             
-            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="0"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
+            <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="0"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="1"  Grid.Row="0" ></ImageButton>
             <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.redchecker.jpg}" Grid.Column="2"  Grid.Row="0"  Clicked="ClickedGrid"></ImageButton>
             <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.whiteboard.jpg}" Grid.Column="3"  Grid.Row="0" ></ImageButton>

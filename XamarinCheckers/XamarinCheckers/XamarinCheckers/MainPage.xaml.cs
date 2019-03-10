@@ -48,7 +48,7 @@ namespace XamarinCheckers
             localColor = (Color)0;*/
 
             /* Receiver - Network demo code*/
-            opponent = Network.ConnectWithOpponent("192.168.86.110").Result;
+            opponent = Network.ConnectWithOpponent("10.218.22.72").Result;
             localColor = (Color)1;
             ListenForRemoteMove();
         }
@@ -175,6 +175,7 @@ namespace XamarinCheckers
             foreach (Piece capt in m.capturedPieces)
             {
                 ImageButton anotherEmptyBoard = new ImageButton { Source = ImageSource.FromResource("XamarinCheckers.Assets.blackboard.jpg") };
+                anotherEmptyBoard.Clicked += ClickedGrid;
                 boardGrid.Children.Add(anotherEmptyBoard, capt.location.xCoord, capt.location.yCoord);
             }
             gameBoard.ApplyMove(m);
