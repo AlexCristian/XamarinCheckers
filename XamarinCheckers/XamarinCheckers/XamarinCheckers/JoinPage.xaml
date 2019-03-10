@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinCheckers.JoinPage"
+             BackgroundColor="Black">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Please enter the Host's IP Address." TextColor="White" TranslationY="80" FontSize="20"  HorizontalOptions="CenterAndExpand" />
+            <Entry Placeholder="IP Address" TranslationY="80" />
+            <Button Text="Join" TranslationY="100" TextColor="Black"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinCheckers.HomeScreen"
+             BackgroundColor="Black">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Checkers!" TextColor="White" TranslationY="80" FontSize="50" HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="hostbutton" Text="Host" TranslationY="250" Clicked="HostButtonClicked" TextColor="Black"></Button>
+            <Button x:Name="joinbutton" Text="Join" TranslationY="250" Clicked="JoinButtonClicked" TextColor="Black"></Button>
+            <Button x:Name="quitbutton" Text="Quit" TranslationY="250" TextColor="Black"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
