@@ -10,6 +10,7 @@ namespace XamarinCheckers
         public Location endLoc;
         public List<Piece> capturedPieces;
         public bool undo;
+        public bool forfeit;
 
         public Move(Piece piece, Location end)
         {
@@ -17,6 +18,16 @@ namespace XamarinCheckers
             endLoc = end;
             capturedPieces = new List<Piece>();
         }
+
+        public Move(bool forfeit)
+        {
+            forfeit = true;
+        }
+
+        public Move()
+        {
+        }
+        
 
     }
 }
