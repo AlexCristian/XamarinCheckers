@@ -10,8 +10,8 @@ namespace XamarinCheckers
         public App()
         {
             InitializeComponent();
-
-            MainPage = new HomeScreen();
+            
+            MainPage = new NavigationPage(new HomeScreen());
         }
 
         protected override void OnStart()

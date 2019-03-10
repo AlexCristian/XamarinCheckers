@@ -27,10 +27,5 @@ namespace XamarinCheckers
             await Navigation.PushAsync(new JoinPage());
         }
 
-       /* async void ExitButtonClicked(object sender, EventArgs e)
-        {
-            
-        } */
-
     }
 }

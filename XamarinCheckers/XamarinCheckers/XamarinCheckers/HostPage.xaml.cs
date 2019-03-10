@@ -15,6 +15,20 @@ namespace XamarinCheckers
 		public HostPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+            ipaddress.Text = Network.GetDeviceIPAddress();
+
+        }
+
+        protected override async void OnAppearing()
+        {
+            await WaitForOpponent();
+        }
+
+        private async Task WaitForOpponent()
+        {
+            Task<Connection> result = Task.Run(() => Network.ListenForOpponent());
+            Connection opponent = await result;
+            await Navigation.PushAsync(new MainPage(opponent, Color.Black));
+        }
+    }
 }

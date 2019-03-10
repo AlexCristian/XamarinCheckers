@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace XamarinCheckers
 {
-    class Connection
+    public class Connection
     {
         public Socket sock = null;
         public const int BufferSize = 1024;

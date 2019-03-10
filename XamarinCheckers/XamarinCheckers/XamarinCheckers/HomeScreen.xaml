@@ -7,9 +7,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Checkers!" TextColor="White" TranslationY="80" FontSize="50" HorizontalOptions="CenterAndExpand" />
-            <Button x:Name="hostbutton" Text="Host" TranslationY="250" Clicked="HostButtonClicked" TextColor="Black"></Button>
-            <Button x:Name="joinbutton" Text="Join" TranslationY="250" Clicked="JoinButtonClicked" TextColor="Black"></Button>
-            <Button x:Name="quitbutton" Text="Quit" TranslationY="250" TextColor="Black"></Button>
+            <Button x:Name="hostbutton" Text="Host" TranslationY="250" Clicked="HostButtonClicked" TextColor="White"></Button>
+            <Button x:Name="joinbutton" Text="Join" TranslationY="250" Clicked="JoinButtonClicked" TextColor="White"></Button>
 
         </StackLayout>
     </ContentPage.Content>

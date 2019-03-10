@@ -34,7 +34,7 @@ namespace XamarinCheckers
         private Board gameBoard;
         private Connection opponent;
 
-        public MainPage()
+        public MainPage(Connection opp, Color col)
         {
             InitializeComponent();
             gameBoard = new Board();
@@ -42,35 +42,16 @@ namespace XamarinCheckers
             moveRecs = new List<Move>();
             highlightLocs = new List<Location>();
             turn = (Color)0;
-            System.Diagnostics.Debug.WriteLine("My ip is: " + Network.GetDeviceIPAddress());
+            localColor = col;
+            opponent = opp;
         }
 
         protected override async void OnAppearing()
-        {/*
-            turnTracker.Text = "Awaiting opponent";
-            localColor = (Color)0;
-            await WaitForOpponent();
-            */
-            /* Receiver - Network demo code*/
-            
-            turnTracker.Text = "Connecting";
-            localColor = (Color)1;
-            await ConnectToOpponent("6.98.143.25");
-        }
-
-        private async Task WaitForOpponent()
         {
-            Task<Connection> result = Task.Run(() => Network.ListenForOpponent());
-            opponent = await result;
-            turnTracker.Text = "Black's Turn";
-        }
-
-        private async Task ConnectToOpponent(string ip)
-        {
-            Task<Connection> result = Task.Run(() => Network.ConnectWithOpponent(ip));
-            opponent = await result;
-            turnTracker.Text = "Black's Turn";
-            await ListenForRemoteMove();
+            if (localColor != turn)
+            {
+                await ListenForRemoteMove();
+            }
         }
 
         private async void ClickedGrid(object sender, EventArgs e)
