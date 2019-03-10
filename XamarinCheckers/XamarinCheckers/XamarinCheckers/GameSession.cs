@@ -45,10 +45,5 @@ namespace XamarinCheckers
             gameBoard.ApplyMove(m);
         }
 
-        private void terminate()
-        {
-
-        }
-
     }
 }

@@ -28,6 +28,11 @@ namespace XamarinCheckers
         {
         }
         
-
+        public Move(Piece piece, Location end, List<Piece> capt)
+        {
+            movingPiece = piece;
+            endLoc = end;
+            capturedPieces = capt;
+        }
     }
 }
