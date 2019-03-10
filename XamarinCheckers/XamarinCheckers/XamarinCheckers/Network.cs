@@ -23,7 +23,7 @@ namespace XamarinCheckers
             bool reachedEnd = false;
             message.Clear();
 
-            while (reachedEnd)
+            while (!reachedEnd)
             {
                 int bytesRec = sock.Receive(buffer);
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRec);
