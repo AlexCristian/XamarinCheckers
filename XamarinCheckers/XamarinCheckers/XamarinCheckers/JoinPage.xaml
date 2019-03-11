@@ -7,8 +7,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Please enter the Host's IP Address." TextColor="White" TranslationY="80" FontSize="20"  HorizontalOptions="CenterAndExpand" />
-            <Entry Placeholder="IP Address" x:Name="ipaddress" TranslationY="80" />
-            <Button Text="Join" TranslationY="100" TextColor="White" BackgroundColor="IndianRed" Clicked="JoinButtonClicked"></Button>
+            <Entry Placeholder="IP Address" x:Name="ipaddress" TextColor="Gray" TranslationY="80" />
+            <Button Text="Join" TranslationY="100" TextColor="Gray" BackgroundColor="IndianRed" Clicked="JoinButtonClicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
