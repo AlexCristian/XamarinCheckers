@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XamarinCheckers.App">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.Board">
+    <Position X="6" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAIAAgACgAIAAAAAAQAAEEAAADAgAAABAAAAAECA=</HashCode>
+      <FileName>Board.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.HomeScreen">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAgA=</HashCode>
+      <FileName>HomeScreen.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.HostPage">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>HostPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.JoinPage">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>JoinPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.Location">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAiA=</HashCode>
+      <FileName>Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.ImageResourceExtension" BaseTypeListCollapsed="true">
+    <Position X="15" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="XamarinCheckers.MainPage">
+    <Position X="10.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAgIAAEEACgAAEJAAAAAAAAAAAAAAAAAAAACDIAAIAA=</HashCode>
+      <FileName>MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameBoard" />
+      <Field Name="localColor" />
+      <Field Name="opponent" />
+      <Field Name="turn" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="XamarinCheckers.Move">
+    <Position X="17" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAEAAAAAIAwAAAAAAAAAAABAAAQAAAAAAAAAiA=</HashCode>
+      <FileName>Move.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="endLoc" />
+      <Field Name="pieceColor" />
+      <Field Name="pieceRank" />
+      <Field Name="startLoc" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="XamarinCheckers.Connection">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAIAABAACCAAABAAACAAkAAAAABAAAEAACA=</HashCode>
+      <FileName>Network.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.Network">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAA=</HashCode>
+      <FileName>Network.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamarinCheckers.Piece">
+    <Position X="8.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAQAAAAAAAAAAAAACAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Piece.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="color" />
+      <Field Name="location" />
+      <Field Name="rank" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Xamarin.Forms.ContentPage">
+    <Position X="9.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Xamarin.Forms.Application">
+    <Position X="1.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="XamarinCheckers.Color">
+    <Position X="17" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Piece.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="XamarinCheckers.Rank">
+    <Position X="14.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Piece.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
