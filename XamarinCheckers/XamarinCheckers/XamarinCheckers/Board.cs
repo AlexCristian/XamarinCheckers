@@ -232,11 +232,16 @@ namespace XamarinCheckers
                 return false;
         }
 
-        // validate move???
-        // TODO
+        // validate move
         public bool Validate(Move move)
         {
-            return true;
+            List<Move> validMoves = FindMovesForPiece(FindPiece(move.startLoc));
+            foreach (Move valid in validMoves)
+            {
+                if (valid == move)
+                    return true;
+            }
+            return false;
         }
 
         // finalize a move
@@ -252,7 +257,6 @@ namespace XamarinCheckers
         }
 
         // take a piece out of play
-        // TODO: also need to implement captured pieces counter?
         public void RemovePiece(Location loc)
         {
             Piece capturedPiece = FindPiece(loc);
@@ -279,6 +283,16 @@ namespace XamarinCheckers
                 return (Color)1;
         }
 
+        // counts pieces captured by each side
+        public int CapturedCount(Color c)
+        {
+            List<Piece> count;
+            if (c == (Color)0)
+                count = playerTwoPieces;
+            else
+                count = playerOnePieces;
+            return (12 - count.Count);
+        }
 
     }
 }

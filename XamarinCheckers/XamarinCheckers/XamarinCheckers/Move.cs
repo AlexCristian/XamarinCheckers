@@ -40,5 +40,23 @@ namespace XamarinCheckers
             endLoc = end;
             capturedPieceLocs = capt;
         }
+
+        public static bool operator == (Move lhs, Move rhs)
+        {
+            if (lhs.startLoc == rhs.startLoc && lhs.endLoc == rhs.endLoc 
+                && lhs.pieceRank == rhs.pieceRank && lhs.pieceColor == rhs.pieceColor)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator != (Move lhs, Move rhs)
+        {
+            if (lhs.startLoc != rhs.startLoc || lhs.endLoc != rhs.endLoc
+                || lhs.pieceRank != rhs.pieceRank || lhs.pieceColor != rhs.pieceColor)
+                return true;
+            else
+                return false;
+        }
     }
 }
