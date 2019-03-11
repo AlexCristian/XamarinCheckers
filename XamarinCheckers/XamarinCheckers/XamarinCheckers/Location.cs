@@ -23,6 +23,11 @@
                 return false;
         }
 
+        public bool Equals (Location rhs)
+        {
+            return this == rhs;
+        }
+
         public static bool operator != (Location lhs, Location rhs)
         {
             if (lhs.xCoord != rhs.xCoord || lhs.yCoord != rhs.yCoord)
