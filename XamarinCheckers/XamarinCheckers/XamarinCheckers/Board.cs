@@ -277,7 +277,7 @@ namespace XamarinCheckers
         // declare a winner - should only be called if isInWinState == true
         public Color GetWinner()
         {
-            if (playerOnePieces.Count == 0 || FindMoves((Color)1).Count == 0)
+            if (playerTwoPieces.Count == 0 || FindMoves((Color)1).Count == 0)
                 return (Color)0;
             else
                 return (Color)1;

@@ -237,6 +237,7 @@ namespace XamarinCheckers
                     turnTracker.Text = "WINNER! BLACK";
                 else
                     turnTracker.Text = "WINNER! RED";
+                return;
             }
             else if (turn == (Color)0)
                 turn = (Color)1;
