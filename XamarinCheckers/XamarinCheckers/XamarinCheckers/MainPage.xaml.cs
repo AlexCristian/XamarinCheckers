@@ -43,6 +43,10 @@ namespace XamarinCheckers
             highlightLocs = new List<Location>();
             turn = (Color)0;
             localColor = col;
+            if (turn == localColor)
+                turnTracker.Text = "Your Turn";
+            else
+                turnTracker.Text = "Opponent's Turn";
             opponent = opp;
         }
 
@@ -222,15 +226,14 @@ namespace XamarinCheckers
                     turnTracker.Text = "WINNER! RED";
             }
             else if (turn == (Color)0)
-            {
                 turn = (Color)1;
-                turnTracker.Text = "Red's Turn";
-            }
             else
-            {
                 turn = (Color)0;
-                turnTracker.Text = "Black's Turn";
-            }
+            captCounter.Text = "Captured Pieces: " + gameBoard.CapturedCount(localColor);
+            if (turn == localColor)
+                turnTracker.Text = "Your Turn";
+            else
+                turnTracker.Text = "Opponent's Turn";
         }
 
         private async void WaitAndApplyRemoteMove()

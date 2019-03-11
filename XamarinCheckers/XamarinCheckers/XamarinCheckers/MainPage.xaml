@@ -101,8 +101,8 @@
             <ImageButton Source="{local:ImageResource XamarinCheckers.Assets.graychecker.jpg}" Grid.Column="7"  Grid.Row="7"  Clicked="ClickedGrid"></ImageButton>
         </Grid>
 
-        <Label TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces"   />
-        <Label x:Name="turnTracker" TextColor="Black" FontSize="40" HorizontalTextAlignment="Center" Text="Black's Turn"   />
+        <Label x:Name="captCounter" TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces: 0"   />
+        <Label x:Name="turnTracker" TextColor="Black" FontSize="40" HorizontalTextAlignment="Center" Text=""   />
 
     </StackLayout>
 

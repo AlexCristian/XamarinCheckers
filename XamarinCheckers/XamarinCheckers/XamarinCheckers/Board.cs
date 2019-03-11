@@ -279,6 +279,15 @@ namespace XamarinCheckers
                 return (Color)1;
         }
 
+        public int CapturedCount(Color c)
+        {
+            List<Piece> count;
+            if (c == (Color)0)
+                count = playerTwoPieces;
+            else
+                count = playerOnePieces;
+            return (12 - count.Count);
+        }
 
     }
 }
