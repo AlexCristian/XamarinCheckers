@@ -50,6 +50,11 @@ namespace XamarinCheckers
                 return false;
         }
 
+        public bool Equals (Move rhs)
+        {
+            return this == rhs;
+        }
+
         public static bool operator != (Move lhs, Move rhs)
         {
             if (lhs.startLoc != rhs.startLoc || lhs.endLoc != rhs.endLoc

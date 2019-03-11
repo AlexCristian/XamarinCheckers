@@ -19,7 +19,7 @@ namespace XamarinCheckers
         public const string Handshake = "Checkers handshake." + EndOfFileMarker;
         XmlSerializer moveSerializer = new XmlSerializer(typeof(Move));
 
-        public async Task<string> ReceiveMessage()
+        public string ReceiveMessage()
         {
             bool reachedEnd = false;
             message.Clear();
@@ -37,34 +37,34 @@ namespace XamarinCheckers
             return message.ToString();
         }
 
-        public async Task SendMessage(string message)
+        public void SendMessage(string message)
         {
             byte[] raw_message = Encoding.UTF8.GetBytes(message);
             sock.Send(raw_message);
         }
 
-        public async Task SendMove(Move move)
+        public void SendMove(Move move)
         { 
             StringBuilder serializedMove = new StringBuilder();
             StringWriter moveWriter = new StringWriter(serializedMove);
             moveSerializer.Serialize(moveWriter, move);
             moveWriter.Close();
-            await SendMessage(serializedMove.ToString() + EndOfFileMarker);
+            SendMessage(serializedMove.ToString() + EndOfFileMarker);
         }
 
-        public async Task<Move> ListenForMove()
+        public Move ListenForMove()
         {
-            string data = await ReceiveMessage();
+            string data = ReceiveMessage();
             data = data.Remove(data.LastIndexOf(EndOfFileMarker));
             XmlReader reader = XmlReader.Create(new StringReader(data));
             Move move = (Move) moveSerializer.Deserialize(reader);
             return move;
         }
 
-        public async Task NotifyForfeit()
+        public void NotifyForfeit()
         {
             Move forfeit = new Move(true);
-            await SendMove(forfeit);
+            SendMove(forfeit);
         }
 
         public void CloseConnection()
@@ -85,7 +85,7 @@ namespace XamarinCheckers
             return ipHostInfo.AddressList[0].ToString();
         }
 
-        public async static Task<Connection> ListenForOpponent()
+        public static Connection ListenForOpponent()
         {
             IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[0];
@@ -103,10 +103,12 @@ namespace XamarinCheckers
                 while (opponentConn == null)
                 {
                     Console.WriteLine("Waiting for a connection...");
-                    opponentConn = new Connection();
-                    opponentConn.sock = listener.Accept();
+                    opponentConn = new Connection
+                    {
+                        sock = listener.Accept()
+                    };
 
-                    string data = await opponentConn.ReceiveMessage();
+                    string data = opponentConn.ReceiveMessage();
 
                     // Establish Checkers protocol handshake.
                     if (!data.Equals(Connection.Handshake))
@@ -119,7 +121,7 @@ namespace XamarinCheckers
                     }                    
 
                 }
-                await opponentConn.SendMessage(Connection.Handshake);
+                opponentConn.SendMessage(Connection.Handshake);
                 return opponentConn;
 
             }
@@ -130,7 +132,7 @@ namespace XamarinCheckers
             }
         }
 
-        public async static Task<Connection> ConnectWithOpponent(string OpponentIpAddress)
+        public static Connection ConnectWithOpponent(string OpponentIpAddress)
         {
             try
             {
@@ -143,8 +145,8 @@ namespace XamarinCheckers
                 opponentConn.sock.Connect(opponent);
 
                 // Establish Checkers protocol handshake.
-                await opponentConn.SendMessage(Connection.Handshake);
-                string data = await opponentConn.ReceiveMessage();
+                opponentConn.SendMessage(Connection.Handshake);
+                string data = opponentConn.ReceiveMessage();
                 if (!data.Equals(Connection.Handshake))
                 {
                     opponentConn = null;

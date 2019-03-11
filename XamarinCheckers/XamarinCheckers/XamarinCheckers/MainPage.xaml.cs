@@ -29,7 +29,6 @@ namespace XamarinCheckers
     {
         private List<Move> moveRecs;
         private List<Location> highlightLocs;
-        private double timeout;
         private Color turn, localColor;
         private Board gameBoard;
         private Connection opponent;
@@ -102,7 +101,7 @@ namespace XamarinCheckers
                         ApplyMoveToUI(m);
 
                         turnTracker.Text = "Sending move...";
-                        await opponent.SendMove(m);
+                        opponent.SendMove(m);
 
                         SwapTurn();
                         if (!gameBoard.IsInWinState())
@@ -250,11 +249,13 @@ namespace XamarinCheckers
                 turnTracker.Text = "Opponent's Turn";
         }
 
-        private async void Forfeit_Clicked(object sender, EventArgs e)
+        private void Forfeit_Clicked(object sender, EventArgs e)
         {
-            Move m = new Move();
-            m.forfeit = true;
-            await opponent.SendMove(m);
+            Move m = new Move
+            {
+                forfeit = true
+            };
+            opponent.SendMove(m);
             if (localColor == Color.Black)
             {
                 turnTracker.Text = "BLACK FORFEITS";
@@ -265,9 +266,9 @@ namespace XamarinCheckers
             }
         }
 
-        private async void WaitAndApplyRemoteMove()
+        private void WaitAndApplyRemoteMove()
         {
-            Move m = await opponent.ListenForMove();
+            Move m = opponent.ListenForMove();
             gameBoard.ApplyMove(m);
         }
     }
