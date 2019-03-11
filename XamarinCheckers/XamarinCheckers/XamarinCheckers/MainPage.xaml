@@ -103,7 +103,7 @@
 
         <Label TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="Captured Pieces"   />
         <Label x:Name="turnTracker" TextColor="Black" FontSize="40" HorizontalTextAlignment="Center" Text="Black's Turn"   />
-
+        <Button x:Name="forfeit" Text="Forfeit" TranslationY="250" Clicked="Forfeit_Clicked" TextColor="White"></Button>
     </StackLayout>
 
 </ContentPage>

@@ -116,6 +116,20 @@ namespace XamarinCheckers
         {
             Task<Move> result = Task.Run(() => opponent.ListenForMove());
             Move mv = await result;
+
+            if (mv.forfeit)
+            {
+                if (localColor == Color.Black)
+                {
+                    turnTracker.Text = "RED FORFEITS";
+                }
+                else
+                {
+                    turnTracker.Text = "BLACK FORFEITS";
+                }
+                return;
+            }
+
             ApplyMoveToUI(mv);
             SwapTurn();
             if (turn == localColor)
@@ -230,6 +244,21 @@ namespace XamarinCheckers
             {
                 turn = (Color)0;
                 turnTracker.Text = "Black's Turn";
+            }
+        }
+
+        private async void Forfeit_Clicked(object sender, EventArgs e)
+        {
+            Move m = new Move();
+            m.forfeit = true;
+            await opponent.SendMove(m);
+            if (localColor == Color.Black)
+            {
+                turnTracker.Text = "BLACK FORFEITS";
+            }
+            else
+            {
+                turnTracker.Text = "RED FORFEITS";
             }
         }
 
